@@ -30,8 +30,10 @@ public class FirstTest {
     }
 
     @Test
-    public void test() {
+    public void openUrl() {
         driver.get("https://otus.ru");
         logger.info("Otus opened");
     }
+
+
 }
