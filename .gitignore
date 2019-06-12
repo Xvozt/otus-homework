@@ -136,5 +136,6 @@ fabric.properties
 
 Homework.iml
 /testng-tests/testngtests.iml
+/testlink-tests/testlinktests.iml
 /junit-tests
 .idea

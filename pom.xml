@@ -11,6 +11,7 @@
     <modules>
         <module>testng-tests</module>
         <module>junit-tests</module>
+        <module>testlink-tests</module>
     </modules>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
