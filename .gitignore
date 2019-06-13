@@ -135,7 +135,7 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 Homework.iml
-/testng-tests/testngtests.iml
-/testlink-tests/testlinktests.iml
+/testlink-tests/testlink-tests.iml
+/testng-tests/testng-tests.iml
 /junit-tests
 .idea
