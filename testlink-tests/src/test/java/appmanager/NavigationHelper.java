@@ -9,11 +9,8 @@ public class NavigationHelper extends HelperBase {
         super(wd);
     }
 
-    public void logInPage() {
-        if (isElementPresent(By.xpath("//div[@class='menu_bar']"))) {
-            return;
-        }
-        click(By.linkText("Test Plan Management"));
+    public void testSpecificationPage() {
+        click(By.xpath("//a[contains(text(),'Test Specification')]"));
     }
 }
 
