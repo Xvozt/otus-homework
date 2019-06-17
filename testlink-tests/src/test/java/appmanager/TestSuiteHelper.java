@@ -18,7 +18,7 @@ public class TestSuiteHelper extends HelperBase {
 
     public void fillTestSuiteData() {
         type(By.cssSelector("#name"), "Test suite name auto");
-        switchToByFrameIndex(0);
+        switchToFrameByIndex(0);
         type(By.cssSelector("body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders:nth-child(2)"), "Test suite details auto");
     }
 
@@ -33,7 +33,7 @@ public class TestSuiteHelper extends HelperBase {
 
 
     public void create() {
-        switchToByFrameIndex(1);
+        switchToFrameByIndex(1);
         pressActionsButton();
         initSuiteCreation();
         fillTestSuiteData();
