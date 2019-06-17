@@ -6,6 +6,6 @@ public class CreateTestSuiteWithTwoTestCases extends TestBase {
 
     @Test
     public void createTestSuiteWithTwoTestCases() {
-        app.goTo().logInPage();
+        app.goTo().testSpecificationPage();
     }
 }
