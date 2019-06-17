@@ -20,8 +20,6 @@ public class ApplicationManager{
     public ApplicationManager() {
         properties = new Properties();
         WebDriverManager.chromedriver().setup();
-        WebDriverManager.edgedriver().setup();
-
     }
 
     public void init() throws IOException {

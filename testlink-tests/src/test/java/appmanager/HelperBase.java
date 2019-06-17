@@ -22,9 +22,6 @@ public class HelperBase {
         return wd.findElement(locator);
     }
 
-//    protected WebDriver.Navigation navigate() {
-//        return wd.navigate();
-//    }
 
     protected List<WebElement> findElements(By locator) {
         return wd.findElements(locator);
