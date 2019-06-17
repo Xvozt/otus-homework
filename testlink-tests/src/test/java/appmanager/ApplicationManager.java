@@ -15,6 +15,7 @@ public class ApplicationManager{
 
     private AuthHelper authHelper;
     private NavigationHelper navigationHelper;
+    private TestSuiteHelper testSuiteHelper;
 
 
     public ApplicationManager() {
@@ -25,16 +26,22 @@ public class ApplicationManager{
     public void init() throws IOException {
         properties.load(new FileInputStream("src/test/resources/local.properties"));
         wd = new ChromeDriver();
-        wd.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         wd.get(properties.getProperty("web.BaseUrl"));
         authHelper = new AuthHelper(wd);
         navigationHelper = new NavigationHelper(wd);
+        testSuiteHelper = new TestSuiteHelper(wd);
         authHelper.login(properties.getProperty("web.Login"), properties.getProperty("web.Password"));
     }
 
     public NavigationHelper goTo() {
         return navigationHelper;
     }
+
+    public TestSuiteHelper suite() {
+        return testSuiteHelper;
+    }
+
 
     public void stop() {
         if (wd != null) {

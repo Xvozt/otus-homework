@@ -10,7 +10,8 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void testSpecificationPage() {
-        click(By.xpath("//a[contains(text(),'Test Specification')]"));
+        switchToByFrameName("mainframe");
+        click(By.xpath("//a[@class='list-group-item' and contains(@href,'?feature=editTc')]"));
     }
 }
 

@@ -22,6 +22,21 @@ public class HelperBase {
         return wd.findElement(locator);
     }
 
+    protected void switchToByFrameName(String frameName) {
+        wd.switchTo().frame(frameName);
+    }
+
+    protected void switchToByFrameIndex(int index) {
+        wd.switchTo().frame(index);
+    }
+
+    protected void switchToParentFrame() {
+        wd.switchTo().parentFrame();
+    }
+
+    protected void switchToDefaultContent() {
+        wd.switchTo().defaultContent();
+    }
 
     protected List<WebElement> findElements(By locator) {
         return wd.findElements(locator);
