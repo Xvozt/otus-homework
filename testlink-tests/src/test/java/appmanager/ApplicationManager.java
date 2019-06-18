@@ -16,6 +16,7 @@ public class ApplicationManager{
     private AuthHelper authHelper;
     private NavigationHelper navigationHelper;
     private TestSuiteHelper testSuiteHelper;
+    private TestCaseHelper testCaseHelper;
 
 
     public ApplicationManager() {
@@ -31,6 +32,7 @@ public class ApplicationManager{
         authHelper = new AuthHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         testSuiteHelper = new TestSuiteHelper(wd);
+        testCaseHelper = new TestCaseHelper(wd);
         authHelper.login(properties.getProperty("web.Login"), properties.getProperty("web.Password"));
     }
 
@@ -38,10 +40,13 @@ public class ApplicationManager{
         return navigationHelper;
     }
 
-    public TestSuiteHelper suite() {
+    public TestSuiteHelper testSuite() {
         return testSuiteHelper;
     }
 
+    public TestCaseHelper testCase() {
+        return testCaseHelper;
+    }
 
     public void stop() {
         if (wd != null) {

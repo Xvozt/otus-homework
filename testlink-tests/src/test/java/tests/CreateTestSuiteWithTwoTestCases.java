@@ -7,6 +7,8 @@ public class CreateTestSuiteWithTwoTestCases extends TestBase {
     @Test
     public void createTestSuiteWithTwoTestCases() {
         app.goTo().testSpecificationPage();
-        app.suite().create();
+        app.testSuite().create();
+        app.testCase().createTestCase();
+        app.testSuite().delete();
     }
 }

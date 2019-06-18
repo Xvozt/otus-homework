@@ -17,17 +17,28 @@ public class TestSuiteHelper extends HelperBase {
     }
 
     public void fillTestSuiteData() {
-        type(By.cssSelector("#name"), "Test suite name auto");
+        type(By.cssSelector("#name"), "Test testSuite name auto");
         switchToFrameByIndex(0);
-        type(By.cssSelector("body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders:nth-child(2)"), "Test suite details auto");
+        type(By.cssSelector("body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders:nth-child(2)"), "Test testSuite details auto");
     }
 
     public void submitSuiteCreation() {
         click(By.cssSelector("input[name=add_testsuite_button]"));
     }
 
-    public void selectCreatedTestSuite() {
+    public void selectCreatedTestSuite(String name) {
+        switchToParentFrame();
+        switchToFrameByIndex(0);
+        click(By.xpath("//span[contains(text(), '"+name+"')]"));
+        switchToParentFrame();
+    }
 
+    private void confirmSuiteDeletion() {
+        click(By.xpath("//input[@name='delete_testsuite']"));
+    }
+
+    private void initSuiteDeletion() {
+        click(By.xpath("//input[@id='delete_testsuite']"));
     }
 
 
@@ -41,8 +52,13 @@ public class TestSuiteHelper extends HelperBase {
         submitSuiteCreation();
     }
 
-
-
     public void delete() {
+        selectCreatedTestSuite("Test testSuite name auto");
+        switchToFrameByIndex(1);
+        pressActionsButton();
+        initSuiteDeletion();
+        confirmSuiteDeletion();
     }
+
+
 }

@@ -2,6 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="/Users/sergeykupriyanov/IdeaProjects/Otus/Homework/Homework/testlink-tests/src/test/java/tests">
+        <parameter name="TestCaseName" value="TestCase1"/>
+        <parameter name="TestCaseName" value="TestCase2"/>
+        <parameter name="TestSuiteName" value="TestSuite1"></parameter>
         <classes>
             <class name="tests.CreateTestSuiteWithTwoTestCases">
                 <methods>
