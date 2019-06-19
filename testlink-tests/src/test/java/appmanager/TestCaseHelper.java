@@ -33,10 +33,22 @@ public class TestCaseHelper extends TestSuiteHelper {
         click(By.cssSelector("#create_tc"));
     }
 
-    private void selectTestCase(String testCaseName) {
+    private void selectTestCase(String testCaseName, String testSuiteName) throws InterruptedException {
+        Thread.sleep(500);
         switchToMainFrame();
         switchToTreeFrame();
-        click(By.xpath("//span[contains(text(),'" + testCaseName + "')]"));
+        if (isClickable(By.xpath("//span[contains(text(),'" + testCaseName + "')]"))) {
+            click(By.xpath("//span[contains(text(),'" + testCaseName + "')]"));
+        }
+        else {
+            expandCreatedTestSuite(testSuiteName);
+            Thread.sleep(500);
+            switchToMainFrame();
+            switchToTreeFrame();
+            click(By.xpath("//span[contains(text(),'" + testCaseName + "')]"));
+
+        }
+
         switchToDefaultContent();
     }
 
@@ -69,9 +81,9 @@ public class TestCaseHelper extends TestSuiteHelper {
 
     }
 
-    public void addSteps(String testCaseName, String actions, String expectedResults, String testSuiteName) {
+    public void addSteps(String testCaseName, String actions, String expectedResults, String testSuiteName) throws InterruptedException {
         expandCreatedTestSuite(testSuiteName);
-        selectTestCase(testCaseName);
+        selectTestCase(testCaseName,  testSuiteName);
         selectAddingSteps();
         addStepsToTestCase(actions, expectedResults);
         expandCreatedTestSuite(testSuiteName);

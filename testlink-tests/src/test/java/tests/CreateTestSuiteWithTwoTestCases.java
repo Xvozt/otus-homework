@@ -15,7 +15,7 @@ public class CreateTestSuiteWithTwoTestCases extends TestBase {
 
     @Test
     @Parameters
-    public void createTestSuiteWithTestCase() {
+    public void createTestSuiteWithTestCase() throws InterruptedException {
         app.goTo().homePage();
         app.goTo().testSpecificationPage();
         app.testSuite().create("Test suite name auto");
