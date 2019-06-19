@@ -34,12 +34,16 @@ public class TestSuiteHelper extends HelperBase {
         switchToParentFrame();
     }
 
-    protected void doubleClickOnCreatedTestSuite(String name) {
-        switchToParentFrame();
-        switchToParentFrame();
-        switchToFrameByIndex(0);
+    protected void expandCreatedTestSuite(String name) {
+        switchToDefaultContent();
+        switchToMainFrame();
+        switchToTreeFrame();
         doubleClick(By.xpath("//span[contains(text(), '"+name+"')]"));
-        switchToParentFrame();
+        switchToDefaultContent();
+    }
+
+    protected void doubleClickOnCreatedTestSuite(String name) {
+        doubleClick(By.xpath("//span[contains(text(), '"+name+"')]"));
     }
 
     private void confirmSuiteDeletion() {
@@ -52,14 +56,14 @@ public class TestSuiteHelper extends HelperBase {
 
     private void goToHomePage() {
         switchToDefaultContent();
-        switchToFrameByIndex(0);
+        switchToTitleBarFrame();
         click(By.xpath("//div[1]//a[1]"));
     }
 
 
 
     public void create(String testSuiteName) {
-        switchToFrameByIndex(1);
+        switchToWorkFrame();
         pressActionsButton();
         initSuiteCreation();
         fillTestSuiteData(testSuiteName);
@@ -69,7 +73,7 @@ public class TestSuiteHelper extends HelperBase {
 
     public void delete(String testSuiteName) {
         selectCreatedTestSuite(testSuiteName);
-        switchToFrameByIndex(1);
+        switchToWorkFrame();
         pressActionsButton();
         initSuiteDeletion();
         confirmSuiteDeletion();

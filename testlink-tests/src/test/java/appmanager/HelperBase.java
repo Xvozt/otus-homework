@@ -44,9 +44,6 @@ public class HelperBase {
         wait(2);
         wd.switchTo().frame(findElement(By.xpath("//frame[@name='titlebar']")));
     }
-    protected void switchToFrameByIndex(int index) {
-        wd.switchTo().frame(index);
-    }
 
     protected void switchToParentFrame() {
         wd.switchTo().parentFrame();
@@ -92,11 +89,8 @@ public class HelperBase {
     }
 
     protected void doubleClick(By locator) {
-//        Actions actions = new Actions(wd);
-//        actions.doubleClick(findElement(locator)).perform();
         Actions action = new Actions(wd);
-        WebElement element = wd.findElement(locator);
-        action.doubleClick(element).perform();
+        action.doubleClick(findElement(locator)).perform();
 
     }
 

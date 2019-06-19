@@ -9,12 +9,12 @@ public class TestCaseHelper extends TestSuiteHelper {
         super(wd);
     }
 
-    public void createTestCase(String testSuiteName) {
+    public void createTestCase(String testSuiteName, String testCaseName) {
         selectCreatedTestSuite(testSuiteName);
         switchToWorkFrame();
         pressActionsButton();
         initTestCreation();
-        fillTestCaseData();
+        fillTestCaseData(testCaseName);
         switchToParentFrame();
         submitTestCaseCreation();
     }
@@ -23,8 +23,8 @@ public class TestCaseHelper extends TestSuiteHelper {
         click(By.xpath("//input[@id='do_create_button']"));
     }
 
-    private void fillTestCaseData() {
-        type(By.cssSelector("#testcase_name"), "test case auto");
+    private void fillTestCaseData(String testCaseName) {
+        type(By.cssSelector("#testcase_name"), testCaseName);
         switchToFirstTextInputField();
         type(By.cssSelector("body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders:nth-child(2)"), "Test case details");
 
@@ -36,12 +36,14 @@ public class TestCaseHelper extends TestSuiteHelper {
 
     private void selectTestCase(String testCaseName) {
         switchToMainFrame();
-        switchToWorkFrame();
+        switchToTreeFrame();
         click(By.xpath("//span[contains(text(),'" + testCaseName + "')]"));
-        switchToParentFrame();
+        switchToDefaultContent();
     }
 
     private void selectAddingSteps() {
+        switchToMainFrame();
+        switchToWorkFrame();
         click(By.xpath("//input[@name='create_step']"));
         switchToDefaultContent();
     }
@@ -69,8 +71,8 @@ public class TestCaseHelper extends TestSuiteHelper {
     }
 
     public void addSteps(String testCaseName, String actions, String expectedResults, String testSuiteName) {
-//        doubleClickOnCreatedTestSuite(testSuiteName);
-//        selectTestCase(testCaseName);
+        expandCreatedTestSuite(testSuiteName);
+        selectTestCase(testCaseName);
         selectAddingSteps();
         addStepsToTestCase(actions, expectedResults);
     }
