@@ -5,9 +5,10 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class HelperBase {
     private WebDriver wd;
@@ -17,6 +18,8 @@ public class HelperBase {
     }
 
     protected void click(By locator) {
+        WebDriverWait wait = new WebDriverWait(wd, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
         findElement(locator).click();
     }
 
@@ -26,23 +29,19 @@ public class HelperBase {
 
 
     protected void switchToMainFrame() {
-        wait(2);
-        wd.switchTo().frame(findElement(By.xpath("//frame[@name='mainframe']")));
+       waitUntilFrameLoadedAndClick(By.xpath("//frame[@name='mainframe']"));
     }
 
     protected void switchToWorkFrame() {
-        wait(2);
-        wd.switchTo().frame(findElement(By.xpath("//frame[@name='workframe']")));
+        waitUntilFrameLoadedAndClick(By.xpath("//frame[@name='workframe']"));
     }
 
     protected void switchToTreeFrame() {
-        wait(2);
-        wd.switchTo().frame(findElement(By.xpath("//frame[@name='treeframe']")));
+        waitUntilFrameLoadedAndClick(By.xpath("//frame[@name='treeframe']"));
     }
 
     protected void switchToTitleBarFrame() {
-        wait(2);
-        wd.switchTo().frame(findElement(By.xpath("//frame[@name='titlebar']")));
+        waitUntilFrameLoadedAndClick(By.xpath("//frame[@name='titlebar']"));
     }
 
     protected void switchToParentFrame() {
@@ -55,13 +54,11 @@ public class HelperBase {
 
 
     protected void switchToFirstTextInputField() {
-        wait(2);
-        wd.switchTo().frame(findElement(By.xpath("//div[@id='cke_1_contents']//iframe[contains(@class,'cke_wysiwyg_frame cke_reset')]")));
+        waitUntilFrameLoadedAndClick(By.xpath("//div[@id='cke_1_contents']//iframe[contains(@class,'cke_wysiwyg_frame cke_reset')]"));
     }
 
     protected void switchToSecondTextInputField() {
-        wait(2);
-        wd.switchTo().frame(findElement(By.xpath("//div[@id='cke_2_contents']//iframe[contains(@class,'cke_wysiwyg_frame cke_reset')]")));
+        waitUntilFrameLoadedAndClick(By.xpath("//div[@id='cke_2_contents']//iframe[contains(@class,'cke_wysiwyg_frame cke_reset')]"));
     }
 
     protected List<WebElement> findElements(By locator) {
@@ -82,6 +79,8 @@ public class HelperBase {
             String existingText = findElement(locator).getAttribute("value");
             if (!text.equals(existingText)) {
                 WebElement element  = findElement(locator);
+                WebDriverWait wait = new WebDriverWait(wd, 10);
+                wait.until(ExpectedConditions.elementToBeClickable(element));
                 element.clear();
                 element.sendKeys(text);
             }
@@ -94,14 +93,9 @@ public class HelperBase {
 
     }
 
-    protected void wait(int timeout) {
-        wd.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
-    }
-
-    protected void clickWhenDisplayed(By locator) {
-        if (findElement(locator).isDisplayed() && findElement(locator).isSelected()){
-            click(locator);
-        }
+    private void waitUntilFrameLoadedAndClick(By locator) {
+        WebDriverWait wait = new WebDriverWait(wd,10);
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
     }
 
 }

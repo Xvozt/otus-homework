@@ -36,12 +36,11 @@ public class TestCaseHelper extends TestSuiteHelper {
     private void selectTestCase(String testCaseName) {
         switchToMainFrame();
         switchToTreeFrame();
-        //ADD wait until, sometimes failes to click
         click(By.xpath("//span[contains(text(),'" + testCaseName + "')]"));
         switchToDefaultContent();
     }
 
-    private void selectAddingSteps() {
+    private void selectAddingSteps(){
         switchToMainFrame();
         switchToWorkFrame();
         click(By.xpath("//input[@name='create_step']"));
