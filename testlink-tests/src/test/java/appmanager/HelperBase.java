@@ -98,4 +98,10 @@ public class HelperBase {
         wd.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
     }
 
+    protected void clickWhenDisplayed(By locator) {
+        if (findElement(locator).isDisplayed() && findElement(locator).isSelected()){
+            click(locator);
+        }
+    }
+
 }

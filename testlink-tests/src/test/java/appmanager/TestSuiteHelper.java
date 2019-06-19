@@ -9,6 +9,9 @@ public class TestSuiteHelper extends HelperBase {
     }
 
     protected void pressActionsButton() {
+        switchToDefaultContent();
+        switchToMainFrame();
+        switchToWorkFrame();
         click(By.cssSelector("img.clickable[title='Actions']"));
     }
 
@@ -30,8 +33,7 @@ public class TestSuiteHelper extends HelperBase {
         switchToDefaultContent();
         switchToMainFrame();
         switchToTreeFrame();
-        click(By.xpath("//span[contains(text(), '"+name+"')]"));
-        switchToParentFrame();
+        click(By.xpath("//span[contains(text(), '" + name + "')]"));
     }
 
     protected void expandCreatedTestSuite(String name) {
@@ -42,10 +44,6 @@ public class TestSuiteHelper extends HelperBase {
         switchToDefaultContent();
     }
 
-    protected void doubleClickOnCreatedTestSuite(String name) {
-        doubleClick(By.xpath("//span[contains(text(), '"+name+"')]"));
-    }
-
     private void confirmSuiteDeletion() {
         click(By.xpath("//input[@name='delete_testsuite']"));
     }
@@ -54,15 +52,12 @@ public class TestSuiteHelper extends HelperBase {
         click(By.xpath("//input[@id='delete_testsuite']"));
     }
 
-    private void goToHomePage() {
-        switchToDefaultContent();
-        switchToTitleBarFrame();
-        click(By.xpath("//div[1]//a[1]"));
-    }
+
 
 
 
     public void create(String testSuiteName) {
+        switchToMainFrame();
         switchToWorkFrame();
         pressActionsButton();
         initSuiteCreation();
@@ -73,12 +68,11 @@ public class TestSuiteHelper extends HelperBase {
 
     public void delete(String testSuiteName) {
         selectCreatedTestSuite(testSuiteName);
-        switchToWorkFrame();
         pressActionsButton();
         initSuiteDeletion();
         confirmSuiteDeletion();
-        switchToParentFrame();
-        goToHomePage();
+        //switchToParentFrame();
+        //homePage();
     }
 
 

@@ -11,7 +11,6 @@ public class TestCaseHelper extends TestSuiteHelper {
 
     public void createTestCase(String testSuiteName, String testCaseName) {
         selectCreatedTestSuite(testSuiteName);
-        switchToWorkFrame();
         pressActionsButton();
         initTestCreation();
         fillTestCaseData(testCaseName);
@@ -37,6 +36,7 @@ public class TestCaseHelper extends TestSuiteHelper {
     private void selectTestCase(String testCaseName) {
         switchToMainFrame();
         switchToTreeFrame();
+        //ADD wait until, sometimes failes to click
         click(By.xpath("//span[contains(text(),'" + testCaseName + "')]"));
         switchToDefaultContent();
     }
@@ -75,6 +75,8 @@ public class TestCaseHelper extends TestSuiteHelper {
         selectTestCase(testCaseName);
         selectAddingSteps();
         addStepsToTestCase(actions, expectedResults);
+        expandCreatedTestSuite(testSuiteName);
+
     }
 
 }

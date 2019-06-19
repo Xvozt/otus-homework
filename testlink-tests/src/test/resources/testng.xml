@@ -4,8 +4,8 @@
     <classes>
         <class name="tests.CreateTestSuiteWithTwoTestCases">
             <methods>
-                <include name="createTestSuiteWithTwoTestCases"/>
-                <include name="createTestCase"/>
+                <include name="createTestSuite"/>
+                <include name="createTestSuiteWithTestCase"/>
             </methods>
         </class>
     </classes>
