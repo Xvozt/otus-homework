@@ -8,28 +8,37 @@ public class TestSuiteHelper extends HelperBase {
         super(wd);
     }
 
-    public void pressActionsButton() {
+    protected void pressActionsButton() {
         click(By.cssSelector("img.clickable[title='Actions']"));
     }
 
-    public void initSuiteCreation() {
+    private void initSuiteCreation() {
         click(By.xpath("//input[@id='new_testsuite']"));
     }
 
-    public void fillTestSuiteData() {
-        type(By.cssSelector("#name"), "Test testSuite name auto");
+    private void fillTestSuiteData(String testSuiteName) {
+        type(By.cssSelector("#name"), testSuiteName);
         switchToFrameByIndex(0);
         type(By.cssSelector("body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders:nth-child(2)"), "Test testSuite details auto");
     }
 
-    public void submitSuiteCreation() {
+    private void submitSuiteCreation() {
         click(By.cssSelector("input[name=add_testsuite_button]"));
     }
 
-    public void selectCreatedTestSuite(String name) {
+    protected void selectCreatedTestSuite(String name) {
+        switchToDefaultContent();
+        switchToFrameByLocator(By.xpath("//frame[@name='mainframe']"));
+        switchToFrameByLocator(By.xpath("//frame[@name='treeframe']"));
+        click(By.xpath("//span[contains(text(), '"+name+"')]"));
+        switchToParentFrame();
+    }
+
+    protected void doubleClickOnCreatedTestSuite(String name) {
+        switchToParentFrame();
         switchToParentFrame();
         switchToFrameByIndex(0);
-        click(By.xpath("//span[contains(text(), '"+name+"')]"));
+        doubleClick(By.xpath("//span[contains(text(), '"+name+"')]"));
         switchToParentFrame();
     }
 
@@ -41,23 +50,31 @@ public class TestSuiteHelper extends HelperBase {
         click(By.xpath("//input[@id='delete_testsuite']"));
     }
 
+    private void goToHomePage() {
+        switchToDefaultContent();
+        switchToFrameByIndex(0);
+        click(By.xpath("//div[1]//a[1]"));
+    }
 
 
-    public void create() {
+
+    public void create(String testSuiteName) {
         switchToFrameByIndex(1);
         pressActionsButton();
         initSuiteCreation();
-        fillTestSuiteData();
+        fillTestSuiteData(testSuiteName);
         switchToParentFrame();
         submitSuiteCreation();
     }
 
-    public void delete() {
-        selectCreatedTestSuite("Test testSuite name auto");
+    public void delete(String testSuiteName) {
+        selectCreatedTestSuite(testSuiteName);
         switchToFrameByIndex(1);
         pressActionsButton();
         initSuiteDeletion();
         confirmSuiteDeletion();
+        switchToParentFrame();
+        goToHomePage();
     }
 
 

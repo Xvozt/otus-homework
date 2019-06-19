@@ -4,8 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class HelperBase {
     private WebDriver wd;
@@ -22,10 +24,26 @@ public class HelperBase {
         return wd.findElement(locator);
     }
 
-    protected void switchToFrameByName(String frameName) {
-        wd.switchTo().frame(frameName);
+
+    protected void switchToMainFrame() {
+        wait(2);
+        wd.switchTo().frame(findElement(By.xpath("//frame[@name='mainframe']")));
     }
 
+    protected void switchToWorkFrame() {
+        wait(2);
+        wd.switchTo().frame(findElement(By.xpath("//frame[@name='workframe']")));
+    }
+
+    protected void switchToTreeFrame() {
+        wait(2);
+        wd.switchTo().frame(findElement(By.xpath("//frame[@name='treeframe']")));
+    }
+
+    protected void switchToTitleBarFrame() {
+        wait(2);
+        wd.switchTo().frame(findElement(By.xpath("//frame[@name='titlebar']")));
+    }
     protected void switchToFrameByIndex(int index) {
         wd.switchTo().frame(index);
     }
@@ -36,6 +54,20 @@ public class HelperBase {
 
     protected void switchToDefaultContent() {
         wd.switchTo().defaultContent();
+    }
+
+    protected void switchToFrameByLocator(By locator) {
+        wd.switchTo().frame(findElement(locator));
+    }
+
+    protected void switchToFirstTextInputField() {
+        wait(2);
+        wd.switchTo().frame(findElement(By.xpath("//div[@id='cke_1_contents']//iframe[contains(@class,'cke_wysiwyg_frame cke_reset')]")));
+    }
+
+    protected void switchToSecondTextInputField() {
+        wait(2);
+        wd.switchTo().frame(findElement(By.xpath("//div[@id='cke_2_contents']//iframe[contains(@class,'cke_wysiwyg_frame cke_reset')]")));
     }
 
     protected List<WebElement> findElements(By locator) {
@@ -61,4 +93,18 @@ public class HelperBase {
             }
         }
     }
+
+    protected void doubleClick(By locator) {
+//        Actions actions = new Actions(wd);
+//        actions.doubleClick(findElement(locator)).perform();
+        Actions action = new Actions(wd);
+        WebElement element = wd.findElement(locator);
+        action.doubleClick(element).perform();
+
+    }
+
+    protected void wait(int timeout) {
+        wd.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+    }
+
 }
