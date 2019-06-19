@@ -56,9 +56,6 @@ public class HelperBase {
         wd.switchTo().defaultContent();
     }
 
-    protected void switchToFrameByLocator(By locator) {
-        wd.switchTo().frame(findElement(locator));
-    }
 
     protected void switchToFirstTextInputField() {
         wait(2);

@@ -18,7 +18,7 @@ public class TestSuiteHelper extends HelperBase {
 
     private void fillTestSuiteData(String testSuiteName) {
         type(By.cssSelector("#name"), testSuiteName);
-        switchToFrameByIndex(0);
+        switchToFirstTextInputField();
         type(By.cssSelector("body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders:nth-child(2)"), "Test testSuite details auto");
     }
 
@@ -28,8 +28,8 @@ public class TestSuiteHelper extends HelperBase {
 
     protected void selectCreatedTestSuite(String name) {
         switchToDefaultContent();
-        switchToFrameByLocator(By.xpath("//frame[@name='mainframe']"));
-        switchToFrameByLocator(By.xpath("//frame[@name='treeframe']"));
+        switchToMainFrame();
+        switchToTreeFrame();
         click(By.xpath("//span[contains(text(), '"+name+"')]"));
         switchToParentFrame();
     }
