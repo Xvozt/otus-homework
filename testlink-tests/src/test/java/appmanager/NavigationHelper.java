@@ -10,6 +10,7 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void testSpecificationPage() {
+        switchToDefaultContent();
         switchToTitleBarFrame();
         click(By.xpath("//div[@class='menu_bar']//a[@accesskey='t']"));
         switchToDefaultContent();
@@ -20,5 +21,13 @@ public class NavigationHelper extends HelperBase {
         switchToTitleBarFrame();
         click(By.xpath("//div[1]//a[1]"));
     }
+
+    public void testProjectManagementPage()  {
+        switchToDefaultContent();
+        switchToMainFrame();
+        click(By.xpath("//a[@class='list-group-item' and contains(@href,'projectView')]"));
+    }
+
+
 }
 
