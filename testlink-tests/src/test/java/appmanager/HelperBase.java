@@ -1,11 +1,12 @@
 package appmanager;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
 
 public class HelperBase {
     private WebDriver wd;
@@ -56,19 +57,6 @@ public class HelperBase {
 
     protected void switchToSecondTextInputField() {
         waitUntilFrameLoadedAndClick(By.xpath("//div[@id='cke_2_contents']//iframe[contains(@class,'cke_wysiwyg_frame cke_reset')]"));
-    }
-
-    protected List<WebElement> findElements(By locator) {
-        return wd.findElements(locator);
-    }
-
-    public boolean isElementPresent(By locator) {
-        try {
-            findElement(locator);
-            return true;
-        } catch (NoSuchElementException ex) {
-            return false;
-        }
     }
 
     public void type(By locator, String text) {

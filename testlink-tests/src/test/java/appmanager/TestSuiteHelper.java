@@ -71,8 +71,6 @@ public class TestSuiteHelper extends HelperBase {
         pressActionsButton();
         initSuiteDeletion();
         confirmSuiteDeletion();
-        //switchToParentFrame();
-        //homePage();
     }
 
 
