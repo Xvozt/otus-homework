@@ -1,18 +1,24 @@
 package tests;
 
+import data.ProjectData;
 import org.testng.annotations.Test;
 
 public class CreateTestProject extends TestBase {
 
     @Test
     public void createTestProject() {
+        ProjectData projectInfoForCreation = new ProjectData().withName("Testproject")
+                .withDescription("Some Description")
+                .withPrefix("TP");
         app.goTo().homePage();
         app.goTo().testProjectManagementPage();
-        app.testProject().create("Homework4", "hw04", "Some test project for homework 04");
+        app.project().create(projectInfoForCreation);
         app.goTo().homePage();
         app.goTo().testProjectManagementPage();
-        //assert name, description, public flag
-        app.testProject().delete("Homework4");
+        //ProjectData projectInfoAfterCreation = app.project().projectInfoAfterCreation();
+        //assertThat(projectInfoAfterCreation, equalTo(projectInfoForCreation));
+        //assert на наличие элемента
+        //app.project().delete(projectData); //поменять передаваемый в параметрах объект в методах
     }
 
 }

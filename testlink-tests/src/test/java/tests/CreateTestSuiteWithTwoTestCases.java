@@ -9,8 +9,8 @@ public class CreateTestSuiteWithTwoTestCases extends TestBase {
     public void createTestSuite() {
         app.goTo().homePage();
         app.goTo().testSpecificationPage();
-        app.testSuite().create("Test suite name auto");
-        app.testSuite().delete("Test suite name auto");
+        app.suite().create("Test suite name auto");
+        app.suite().delete("Test suite name auto");
     }
 
     @Test
@@ -18,7 +18,7 @@ public class CreateTestSuiteWithTwoTestCases extends TestBase {
     public void createTestSuiteWithTestCase() throws InterruptedException {
         app.goTo().homePage();
         app.goTo().testSpecificationPage();
-        app.testSuite().create("Test suite name auto");
+        app.suite().create("Test suite name auto");
         app.testCase().createTestCase("Test suite name auto", "First");
         app.testCase().addSteps("First", "test actions",
                                 "test expected results", "Test suite name auto");
@@ -27,6 +27,6 @@ public class CreateTestSuiteWithTwoTestCases extends TestBase {
         app.testCase().createTestCase("Test suite name auto", "Second");
         app.testCase().addSteps("Second", "test actions",
                                 "test expected results", "Test suite name auto");
-        app.testSuite().delete("Test suite name auto");
+        app.suite().delete("Test suite name auto");
     }
 }

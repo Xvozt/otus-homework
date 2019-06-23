@@ -42,7 +42,7 @@ public class ApplicationManager{
         return navigationHelper;
     }
 
-    public TestSuiteHelper testSuite() {
+    public TestSuiteHelper suite() {
         return testSuiteHelper;
     }
 
@@ -50,7 +50,7 @@ public class ApplicationManager{
         return testCaseHelper;
     }
 
-    public TestProjectHelper testProject() {
+    public TestProjectHelper project() {
         return testProjectHelper;
     }
 
