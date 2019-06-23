@@ -39,6 +39,13 @@ public class TestProjectHelper extends HelperBase {
         return new ProjectData().withName(name).withDescription(description).withPrefix(prefix);
     }
 
+
+    public boolean isPublicImageExisting() {
+        //если картинка присутствует в теге - return true
+        // иначе false
+        return true;
+    }
+
     public void create(ProjectData testProjectData) {
         initProjectCreation();
         fillTestProjectInfo(testProjectData);

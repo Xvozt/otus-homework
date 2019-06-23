@@ -17,7 +17,7 @@ public class CreateTestProject extends TestBase {
         app.goTo().testProjectManagementPage();
         //ProjectData projectInfoAfterCreation = app.project().projectInfoAfterCreation();
         //assertThat(projectInfoAfterCreation, equalTo(projectInfoForCreation));
-        //assert на наличие элемента
+        //assertTrue(app.project().isPublicImageExisting());
         //app.project().delete(projectData); //поменять передаваемый в параметрах объект в методах
     }
 
