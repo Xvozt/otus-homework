@@ -18,6 +18,10 @@ public class ApplicationManager{
     private TestSuiteHelper testSuiteHelper;
     private TestCaseHelper testCaseHelper;
     private TestProjectHelper testProjectHelper;
+    private TestAddingHelper testAddingHelper;
+    private TestBuildHelper testBuildHelper;
+    private TestPlanHelper testPlanHelper;
+    private TestRunHelper testRunHelper;
 
 
     public ApplicationManager() {
@@ -35,6 +39,10 @@ public class ApplicationManager{
         testSuiteHelper = new TestSuiteHelper(wd);
         testCaseHelper = new TestCaseHelper(wd);
         testProjectHelper = new TestProjectHelper(wd);
+        testAddingHelper = new TestAddingHelper(wd);
+        testBuildHelper = new TestBuildHelper(wd);
+        testPlanHelper = new TestPlanHelper(wd);
+        testRunHelper = new TestRunHelper(wd);
         authHelper.login(properties.getProperty("web.Login"), properties.getProperty("web.Password"));
     }
 
@@ -52,6 +60,22 @@ public class ApplicationManager{
 
     public TestProjectHelper project() {
         return testProjectHelper;
+    }
+
+    public TestAddingHelper adding() {
+        return testAddingHelper;
+    }
+
+    public TestBuildHelper build() {
+        return testBuildHelper;
+    }
+
+    public TestPlanHelper plan() {
+        return testPlanHelper;
+    }
+
+    public TestRunHelper run() {
+        return testRunHelper;
     }
 
     public void stop() {
