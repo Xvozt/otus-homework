@@ -68,8 +68,6 @@ public class TestProjectHelper extends HelperBase {
     public boolean noProjectExists() {
         switchToDefaultContent();
         switchToMainFrame();
-        boolean noProjectExist = findElements(By.xpath("//a[@class='list-group-item' and contains(@href,'projectView')]")).size() == 0;
-        return noProjectExist;
-        //return findElements(By.xpath("//a[@class='list-group-item' and contains(@href,'projectView')]")).size() == 0;
+        return findElements(By.xpath("//a[@class='list-group-item' and contains(@href,'projectView')]")).size() == 0;
     }
 }

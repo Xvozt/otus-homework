@@ -65,10 +65,6 @@ public class HelperBase {
         waitUntilFrameLoadedAndClick(By.xpath("//div[@id='cke_2_contents']//iframe[contains(@class,'cke_wysiwyg_frame cke_reset')]"));
     }
 
-    protected void swtichToAlert() {
-
-    }
-
     public void type(By locator, String text) {
         if (text != null) {
             String existingText = findElement(locator).getAttribute("value");
