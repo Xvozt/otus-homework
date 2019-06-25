@@ -56,8 +56,5 @@ public class TestProjectHelper extends HelperBase {
         switchToMainFrame();
         click(By.xpath("//tr[1]//td[9]//img[1]"));
         click(By.cssSelector("#ext-gen20"));
-        //switch to alert window
-        //press yes
-
     }
 }
