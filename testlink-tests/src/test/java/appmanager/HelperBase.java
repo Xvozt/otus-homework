@@ -8,6 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class HelperBase {
     private WebDriver wd;
 
@@ -23,6 +25,10 @@ public class HelperBase {
 
     protected WebElement findElement(By locator) {
         return wd.findElement(locator);
+    }
+
+    protected List<WebElement> findElements(By locator) {
+        return wd.findElements(locator);
     }
 
 

@@ -32,18 +32,17 @@ public class TestProjectHelper extends HelperBase {
     }
 
     public ProjectData projectInfoAfterCreation() {
-        //заполнить локаторы
+        switchToDefaultContent();
+        switchToMainFrame();
         String name = findElement(By.xpath("//tr[1]/td[1]//a[contains(@href, 'doAction=edit')]")).getText();
-        String description = findElement(By.xpath("")).getAttribute("value");
-        String prefix = findElement(By.xpath("")).getAttribute("value");
+        String description = findElement(By.xpath("//tr[1]/td[2]/p[1]")).getText();
+        String prefix = findElement(By.xpath("//tr[1]/td[3]")).getText();
         return new ProjectData().withName(name).withDescription(description).withPrefix(prefix);
     }
 
 
     public boolean isPublicImageExisting() {
-        //если картинка присутствует в теге - return true
-        // иначе false
-        return true;
+        return findElements(By.xpath("//tr[1]/td[8]/img[1]")).size() != 0;
     }
 
     public void create(ProjectData testProjectData) {
@@ -52,10 +51,11 @@ public class TestProjectHelper extends HelperBase {
         submitTestProjectCreation();
     }
 
-    public void delete(ProjectData testProjectData) {
+    public void delete() {
         switchToDefaultContent();
         switchToMainFrame();
-        //click on button
+        click(By.xpath("//tr[1]//td[9]//img[1]"));
+        click(By.cssSelector("#ext-gen20"));
         //switch to alert window
         //press yes
 
