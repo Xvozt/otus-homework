@@ -14,9 +14,13 @@ public class CreateTestProject extends TestBase {
         ProjectData projectInfoForCreation = new ProjectData().withName("Testproject")
                 .withDescription("Some Description")
                 .withPrefix("TP");
-        app.goTo().homePage();
-        app.goTo().testProjectManagementPage();
-        app.project().create(projectInfoForCreation);
+        if (app.project().noProjectExists()) {
+            app.project().straightCreate(projectInfoForCreation);
+        } else {
+            app.goTo().homePage();
+            app.goTo().testProjectManagementPage();
+            app.project().create(projectInfoForCreation);
+        }
         ProjectData projectInfoAfterCreation = app.project().projectInfoAfterCreation();
         assertThat(projectInfoAfterCreation, equalTo(projectInfoForCreation));
         assertTrue(app.project().isPublicImageExisting());
