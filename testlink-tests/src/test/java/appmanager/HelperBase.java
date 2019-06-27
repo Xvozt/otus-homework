@@ -78,6 +78,20 @@ public class HelperBase {
         }
     }
 
+    public void checkBoxActivate(By locator) {
+        if (!findElement(locator).isSelected()) {
+            click(locator);
+        }
+    }
+
+    public void checkBoxDeactivate(By locator) {
+        if (findElement(locator).isSelected()) {
+            click(locator);
+        }
+    }
+
+
+
     protected void doubleClick(By locator) {
         Actions action = new Actions(wd);
         action.doubleClick(findElement(locator)).perform();

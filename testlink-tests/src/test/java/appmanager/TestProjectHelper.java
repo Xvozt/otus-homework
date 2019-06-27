@@ -72,7 +72,7 @@ public class TestProjectHelper extends HelperBase {
         return findElements(By.xpath("//a[@class='list-group-item' and contains(@href,'projectView')]")).size() == 0;
     }
 
-    private void findCreatedProject(ProjectData projectData) {
+    public void findCreatedProject(ProjectData projectData) {
         switchToDefaultContent();
         switchToMainFrame();
         click(By.cssSelector("input[type='search']"));

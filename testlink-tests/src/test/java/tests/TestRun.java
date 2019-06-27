@@ -1,5 +1,6 @@
 package tests;
 
+import data.PlanData;
 import data.ProjectData;
 import org.testng.annotations.Test;
 
@@ -10,6 +11,8 @@ public class TestRun extends TestBase {
         ProjectData projectInfoForCreation = new ProjectData().withName("Testproject")
                 .withDescription("Some Description")
                 .withPrefix("TP");
+
+        PlanData planData = new PlanData().withName("Test Test Plan").withDescription("Some test test plan description");
         if (app.project().noProjectExists()) {
             app.project().straightCreate(projectInfoForCreation);
         } else {
@@ -28,7 +31,12 @@ public class TestRun extends TestBase {
         app.testCase().createTestCase("Test suite name auto", "Second");
         app.testCase().addSteps("Second", "test actions",
                 "test expected results", "Test suite name auto");
-
+        app.goTo().homePage();
+        app.goTo().testPlanManagementPage();
+        app.plan().create(planData);
+        app.goTo().homePage();
+        //app.project().findCreatedProject(projectInfoForCreation);
+        //app.project().delete();
     }
 
 
