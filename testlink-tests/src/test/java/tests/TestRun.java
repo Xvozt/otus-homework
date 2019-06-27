@@ -1,18 +1,33 @@
 package tests;
 
+import data.CaseData;
 import data.PlanData;
 import data.ProjectData;
+import data.SuiteData;
 import org.testng.annotations.Test;
 
 public class TestRun extends TestBase {
 
     @Test
     public void runTests() throws InterruptedException {
-        ProjectData projectInfoForCreation = new ProjectData().withName("Testproject")
-                .withDescription("Some Description")
-                .withPrefix("TP");
+        SuiteData testSuite = new SuiteData().withName("Test suite name auto").withDetails("Test suite details auto");
+        CaseData firstTestCase = new CaseData().withName("First")
+                                               .withDetails("Test case details auto")
+                                               .withActions("test actions")
+                                               .withExpectedResults("test expected results");
 
-        PlanData planData = new PlanData().withName("Test Test Plan").withDescription("Some test test plan description");
+        CaseData secondTestCase = new CaseData().withName("Second")
+                                                .withDetails("Test case details auto")
+                                                .withActions("test actions")
+                                                .withExpectedResults("test expected results");
+
+        ProjectData projectInfoForCreation = new ProjectData().withName("Testproject")
+                                                              .withDescription("Some Description")
+                                                              .withPrefix("TP");
+
+        PlanData planData = new PlanData().withName("Test Test Plan")
+                .withDescription("Some test test plan description");
+
         if (app.project().noProjectExists()) {
             app.project().straightCreate(projectInfoForCreation);
         } else {
@@ -22,19 +37,18 @@ public class TestRun extends TestBase {
         }
         app.goTo().homePage();
         app.goTo().testSpecificationPage();
-        app.suite().create("Test suite name auto");
-        app.testCase().createTestCase("Test suite name auto", "First");
-        app.testCase().addSteps("First", "test actions",
-                "test expected results", "Test suite name auto");
+        app.suite().create(testSuite);
+        app.testCase().createTestCase(testSuite, firstTestCase);
+        app.testCase().addSteps(testSuite, firstTestCase);
         app.goTo().homePage();
         app.goTo().testSpecificationPage();
-        app.testCase().createTestCase("Test suite name auto", "Second");
-        app.testCase().addSteps("Second", "test actions",
-                "test expected results", "Test suite name auto");
+        app.testCase().createTestCase(testSuite, secondTestCase);
+        app.testCase().addSteps(testSuite, secondTestCase);
         app.goTo().homePage();
         app.goTo().testPlanManagementPage();
         app.plan().create(planData);
         app.goTo().homePage();
+        app.goTo().testAddingPage();
         //app.project().findCreatedProject(projectInfoForCreation);
         //app.project().delete();
     }

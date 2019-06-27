@@ -1,5 +1,6 @@
 package appmanager;
 
+import data.SuiteData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -19,28 +20,28 @@ public class TestSuiteHelper extends HelperBase {
         click(By.xpath("//input[@id='new_testsuite']"));
     }
 
-    private void fillTestSuiteData(String testSuiteName) {
-        type(By.cssSelector("#name"), testSuiteName);
+    private void fillTestSuiteData(SuiteData suiteData) {
+        type(By.cssSelector("#name"), suiteData.getName());
         switchToFirstTextInputField();
-        type(By.cssSelector("body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders:nth-child(2)"), "Test suite details auto");
+        type(By.cssSelector("body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders:nth-child(2)"), suiteData.getDetails());
     }
 
     private void submitSuiteCreation() {
         click(By.cssSelector("input[name=add_testsuite_button]"));
     }
 
-    protected void selectCreatedTestSuite(String name) {
+    protected void selectCreatedTestSuite(SuiteData suiteData) {
         switchToDefaultContent();
         switchToMainFrame();
         switchToTreeFrame();
-        click(By.xpath("//span[contains(text(), '" + name + "')]"));
+        click(By.xpath("//span[contains(text(), '" + suiteData.getName() + "')]"));
     }
 
-    protected void expandCreatedTestSuite(String name) {
+    protected void expandCreatedTestSuite(SuiteData suiteData) {
         switchToDefaultContent();
         switchToMainFrame();
         switchToTreeFrame();
-        doubleClick(By.xpath("//span[contains(text(), '"+name+"')]"));
+        doubleClick(By.xpath("//span[contains(text(), '"+ suiteData.getName() +"')]"));
         switchToDefaultContent();
     }
 
@@ -56,18 +57,18 @@ public class TestSuiteHelper extends HelperBase {
 
 
 
-    public void create(String testSuiteName) {
+    public void create(SuiteData suiteData) {
         switchToMainFrame();
         switchToWorkFrame();
         pressActionsButton();
         initSuiteCreation();
-        fillTestSuiteData(testSuiteName);
+        fillTestSuiteData(suiteData);
         switchToParentFrame();
         submitSuiteCreation();
     }
 
-    public void delete(String testSuiteName) {
-        selectCreatedTestSuite(testSuiteName);
+    public void delete(SuiteData suiteData) {
+        selectCreatedTestSuite(suiteData);
         pressActionsButton();
         initSuiteDeletion();
         confirmSuiteDeletion();
