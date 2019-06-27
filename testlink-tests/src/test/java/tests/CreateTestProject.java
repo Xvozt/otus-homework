@@ -21,7 +21,7 @@ public class CreateTestProject extends TestBase {
             app.goTo().testProjectManagementPage();
             app.project().create(projectInfoForCreation);
         }
-        ProjectData projectInfoAfterCreation = app.project().projectInfoAfterCreation();
+        ProjectData projectInfoAfterCreation = app.project().projectInfoAfterCreation(projectInfoForCreation);
         assertThat(projectInfoAfterCreation, equalTo(projectInfoForCreation));
         assertTrue(app.project().isPublicImageExisting());
         app.project().delete();

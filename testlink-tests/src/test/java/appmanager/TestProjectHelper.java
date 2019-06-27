@@ -31,9 +31,10 @@ public class TestProjectHelper extends HelperBase {
         click(By.xpath("//input[@name='doActionButton']"));
     }
 
-    public ProjectData projectInfoAfterCreation() {
+    public ProjectData projectInfoAfterCreation(ProjectData testProjectData) {
         switchToDefaultContent();
         switchToMainFrame();
+        findCreatedProject(testProjectData);
         String name = findElement(By.xpath("//tr[1]/td[1]//a[contains(@href, 'doAction=edit')]")).getText();
         String description = findElement(By.xpath("//tr[1]/td[2]/p[1]")).getText();
         String prefix = findElement(By.xpath("//tr[1]/td[3]")).getText();
@@ -69,5 +70,12 @@ public class TestProjectHelper extends HelperBase {
         switchToDefaultContent();
         switchToMainFrame();
         return findElements(By.xpath("//a[@class='list-group-item' and contains(@href,'projectView')]")).size() == 0;
+    }
+
+    private void findCreatedProject(ProjectData projectData) {
+        switchToDefaultContent();
+        switchToMainFrame();
+        click(By.cssSelector("input[type='search']"));
+        type(By.cssSelector("input[type='search']"),  projectData.getName());
     }
 }
