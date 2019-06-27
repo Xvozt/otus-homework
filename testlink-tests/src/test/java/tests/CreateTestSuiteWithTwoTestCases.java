@@ -30,8 +30,6 @@ public class CreateTestSuiteWithTwoTestCases extends TestBase {
         app.suite().create(testSuite);
         app.suite().delete(testSuite);
         app.goTo().homePage();
-        app.goTo().testProjectManagementPage();
-        app.project().delete();
     }
 
     @Test
