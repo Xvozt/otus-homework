@@ -8,12 +8,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertTrue;
 
 public class CreateTestProject extends TestBase {
+    private ProjectData projectInfoForCreation = new ProjectData().withName("Testproject")
+            .withDescription("Some Description")
+            .withPrefix("TP");
 
     @Test
     public void createTestProject() {
-        ProjectData projectInfoForCreation = new ProjectData().withName("Testproject")
-                .withDescription("Some Description")
-                .withPrefix("TP");
         if (app.project().noProjectExists()) {
             app.project().straightCreate(projectInfoForCreation);
         } else {

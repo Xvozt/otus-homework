@@ -9,26 +9,27 @@ import org.testng.annotations.Test;
 
 public class TestRun extends TestBase {
 
+    private SuiteData testSuite = new SuiteData().withName("Test suite name auto").withDetails("Test suite details auto");
+
+    private CaseData firstTestCase = new CaseData().withName("First")
+            .withDetails("Test case details auto")
+            .withActions("test actions")
+            .withExpectedResults("test expected results");
+
+    private CaseData secondTestCase = new CaseData().withName("Second")
+            .withDetails("Test case details auto")
+            .withActions("test actions")
+            .withExpectedResults("test expected results");
+
+    private ProjectData testProject = new ProjectData().withName("Testproject")
+            .withDescription("Some Description")
+            .withPrefix("TP");
+
+    private PlanData testPlan = new PlanData().withName("Test Test Plan")
+            .withDescription("Some test test plan description");
+
     @BeforeSuite
     public void preconditions() throws InterruptedException {
-        SuiteData testSuite = new SuiteData().withName("Test suite name auto").withDetails("Test suite details auto");
-        CaseData firstTestCase = new CaseData().withName("First")
-                .withDetails("Test case details auto")
-                .withActions("test actions")
-                .withExpectedResults("test expected results");
-
-        CaseData secondTestCase = new CaseData().withName("Second")
-                .withDetails("Test case details auto")
-                .withActions("test actions")
-                .withExpectedResults("test expected results");
-
-        ProjectData testProject = new ProjectData().withName("Testproject")
-                .withDescription("Some Description")
-                .withPrefix("TP");
-
-        PlanData testPlan = new PlanData().withName("Test Test Plan")
-                .withDescription("Some test test plan description");
-
         if (app.project().noProjectExists()) {
             app.project().straightCreate(testProject);
         } else {
@@ -54,8 +55,8 @@ public class TestRun extends TestBase {
 
     @Test
     public void runTests() {
-
-
+        /*
+        * Here onlt test for runTests, all other staff in preconditions */
         app.goTo().homePage();
         app.goTo().testProjectManagementPage();
         app.project().delete();
