@@ -4,36 +4,37 @@ import data.CaseData;
 import data.PlanData;
 import data.ProjectData;
 import data.SuiteData;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class TestRun extends TestBase {
 
-    @Test
-    public void runTests() throws InterruptedException {
+    @BeforeSuite
+    public void preconditions() throws InterruptedException {
         SuiteData testSuite = new SuiteData().withName("Test suite name auto").withDetails("Test suite details auto");
         CaseData firstTestCase = new CaseData().withName("First")
-                                               .withDetails("Test case details auto")
-                                               .withActions("test actions")
-                                               .withExpectedResults("test expected results");
+                .withDetails("Test case details auto")
+                .withActions("test actions")
+                .withExpectedResults("test expected results");
 
         CaseData secondTestCase = new CaseData().withName("Second")
-                                                .withDetails("Test case details auto")
-                                                .withActions("test actions")
-                                                .withExpectedResults("test expected results");
+                .withDetails("Test case details auto")
+                .withActions("test actions")
+                .withExpectedResults("test expected results");
 
-        ProjectData projectInfoForCreation = new ProjectData().withName("Testproject")
-                                                              .withDescription("Some Description")
-                                                              .withPrefix("TP");
+        ProjectData testProject = new ProjectData().withName("Testproject")
+                .withDescription("Some Description")
+                .withPrefix("TP");
 
-        PlanData planData = new PlanData().withName("Test Test Plan")
+        PlanData testPlan = new PlanData().withName("Test Test Plan")
                 .withDescription("Some test test plan description");
 
         if (app.project().noProjectExists()) {
-            app.project().straightCreate(projectInfoForCreation);
+            app.project().straightCreate(testProject);
         } else {
             app.goTo().homePage();
             app.goTo().testProjectManagementPage();
-            app.project().create(projectInfoForCreation);
+            app.project().create(testProject);
         }
         app.goTo().homePage();
         app.goTo().testSpecificationPage();
@@ -46,11 +47,18 @@ public class TestRun extends TestBase {
         app.testCase().addSteps(testSuite, secondTestCase);
         app.goTo().homePage();
         app.goTo().testPlanManagementPage();
-        app.plan().create(planData);
+        app.plan().create(testPlan);
         app.goTo().homePage();
         app.goTo().testAddingPage();
-        //app.project().findCreatedProject(projectInfoForCreation);
-        //app.project().delete();
+    }
+
+    @Test
+    public void runTests() {
+
+
+        app.goTo().homePage();
+        app.goTo().testProjectManagementPage();
+        app.project().delete();
     }
 
 
