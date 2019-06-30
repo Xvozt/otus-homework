@@ -51,6 +51,8 @@ public class TestRun extends TestBase {
         app.plan().create(testPlan);
         app.goTo().homePage();
         app.goTo().testAddingPage();
+        app.adding().checkAndAddTestCases(testSuite);
+        app.goTo().homePage();
     }
 
     @Test
@@ -59,7 +61,7 @@ public class TestRun extends TestBase {
         * Here onlt test for runTests, all other staff in preconditions */
         app.goTo().homePage();
         app.goTo().testProjectManagementPage();
-        app.project().delete();
+        //app.project().delete();
     }
 
 
