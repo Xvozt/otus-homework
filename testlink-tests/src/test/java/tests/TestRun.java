@@ -1,9 +1,6 @@
 package tests;
 
-import data.CaseData;
-import data.PlanData;
-import data.ProjectData;
-import data.SuiteData;
+import data.*;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
@@ -27,6 +24,8 @@ public class TestRun extends TestBase {
 
     private PlanData testPlan = new PlanData().withName("Test Test Plan")
             .withDescription("Some test test plan description");
+
+    private BuildData testBuild = new BuildData().withTitle("Test build").withDescription("Some test build description");
 
     @BeforeSuite
     public void preconditions() throws InterruptedException {
@@ -53,6 +52,9 @@ public class TestRun extends TestBase {
         app.goTo().testAddingPage();
         app.adding().checkAndAddTestCases(testSuite);
         app.goTo().homePage();
+        app.goTo().testBuildPage();
+        app.build().create(testBuild);
+
     }
 
     @Test
@@ -60,7 +62,7 @@ public class TestRun extends TestBase {
         /*
         * Here onlt test for runTests, all other staff in preconditions */
         app.goTo().homePage();
-        app.goTo().testProjectManagementPage();
+        //app.goTo().testProjectManagementPage();
         //app.project().delete();
     }
 

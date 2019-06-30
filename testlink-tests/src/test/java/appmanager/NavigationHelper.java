@@ -39,5 +39,11 @@ public class NavigationHelper extends HelperBase {
         switchToMainFrame();
         click(By.xpath("//a[@class='list-group-item' and contains(@href, 'planAddTC')]"));
     }
+
+    public void testBuildPage() {
+        switchToDefaultContent();
+        switchToMainFrame();
+        click(By.xpath("//a[@class='list-group-item' and contains(@href, 'buildView.php')]"));
+    }
 }
 
