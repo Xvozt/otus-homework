@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -21,6 +22,12 @@ public class HelperBase {
         WebDriverWait wait = new WebDriverWait(wd, 10);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         findElement(locator).click();
+    }
+
+    protected void safeClick(By locator) {
+        WebElement element = findElement(locator);
+        Actions actions = new Actions(wd);
+        actions.moveToElement(element).click().build().perform();
     }
 
     protected WebElement findElement(By locator) {
@@ -91,6 +98,12 @@ public class HelperBase {
     }
 
 
+    protected Select select(By locator) {
+        Select select = new Select(findElement(locator));
+        return select;
+    }
+
+
 
     protected void doubleClick(By locator) {
         Actions action = new Actions(wd);
@@ -113,5 +126,13 @@ public class HelperBase {
         catch (TimeoutException t) {
             return false;
         }
+    }
+
+    protected String toHex(String rgbColor) {
+        String[] rgb = rgbColor.replace("rgba(", "").replace(")", "").split(",");
+        int r = Integer.parseInt(rgb[0].trim());
+        int g = Integer.parseInt(rgb[1].trim());
+        int b = Integer.parseInt(rgb[2].trim());
+        return String.format("#%02X%02X%02X", r, g, b);
     }
 }

@@ -45,5 +45,13 @@ public class NavigationHelper extends HelperBase {
         switchToMainFrame();
         click(By.xpath("//a[@class='list-group-item' and contains(@href, 'buildView.php')]"));
     }
+
+    public void testExecutionPage() {
+        switchToDefaultContent();
+        switchToTitleBarFrame();
+        click(By.xpath("//div[@class='menu_bar']//a[@accesskey='e']"));
+        switchToDefaultContent();
+
+    }
 }
 

@@ -33,6 +33,7 @@ public class ApplicationManager{
         properties.load(new FileInputStream("src/test/resources/local.properties"));
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        wd.manage().window().maximize();
         wd.get(properties.getProperty("web.BaseUrl"));
         authHelper = new AuthHelper(wd);
         navigationHelper = new NavigationHelper(wd);
@@ -74,7 +75,7 @@ public class ApplicationManager{
         return testPlanHelper;
     }
 
-    public TestRunHelper run() {
+    public TestRunHelper testRun() {
         return testRunHelper;
     }
 
