@@ -1,8 +1,6 @@
 package appmanager;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager{
     private final Properties properties;
     WebDriver wd;
+    Browsers browser;
 
     private AuthHelper authHelper;
     private NavigationHelper navigationHelper;
@@ -26,12 +25,12 @@ public class ApplicationManager{
 
     public ApplicationManager() {
         properties = new Properties();
-        WebDriverManager.chromedriver().setup();
     }
 
     public void init() throws IOException {
         properties.load(new FileInputStream("src/test/resources/local.properties"));
-        wd = new ChromeDriver();
+        browser = Browsers.find("edge");
+        wd = browser.create();
         wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         wd.manage().window().maximize();
         wd.get(properties.getProperty("web.BaseUrl"));
